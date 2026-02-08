@@ -4,22 +4,29 @@ class packet;
 endclass
 
 module tb;
-    logic clk=0, rst, d, q;
+    logic clk = 0;
+    logic rst, d, q;
+
     dff dut (.*);
+
+    packet pkt; 
 
     always #5 clk = ~clk;
 
     initial begin
+        // Waveform
         $dumpfile("dff.vcd");
         $dumpvars(0, tb);
 
-        packet pkt = new();
+        pkt = new(); 
+
         repeat (50) begin
             pkt.randomize();
             rst = pkt.rst;
             d   = pkt.d;
             @(posedge clk);
         end
+
         #10 $finish;
     end
 endmodule
