@@ -2,10 +2,6 @@
 
 program clock_test (clock_interface.TB intf);
 
-    // =========================================================
-    // Functional Coverage
-    // =========================================================
-
     covergroup clock_cg @(posedge intf.clk);
 
         seconds_cp : coverpoint intf.seconds {
